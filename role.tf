@@ -1,5 +1,5 @@
-resource "aws_cloudwatch_log_group" "log_group" {
-  name              = "/aws/lambda/${var.ftn_name}"
+resource "aws_cloudwatch_log_group" "lg" {
+  name              = "/aws/wms/lambda/${var.ftn_name}"
   retention_in_days = 14
 }
 
