@@ -1,6 +1,7 @@
 resource "aws_iam_role" "lambda_role" {
-  name = "wms_lambda_role"
-  assume_role_policy = jsonencode({
+  name               = "wms_lambda_role"
+  assume_role_policy = <<EOF
+  {
     Version = "2012-10-17"
     Statement = [
       {
@@ -12,7 +13,8 @@ resource "aws_iam_role" "lambda_role" {
         }
       },
     ]
-  })
+  }
+  EOF
 
   tags = {
     "Name" = "wms"
@@ -26,7 +28,8 @@ resource "aws_iam_policy" "iam_policy_for_lambda" {
   name        = "aws_iam_policy_for_terraform_aws_lambda_role"
   path        = "/"
   description = "AWS IAM Policy for managing aws lambda role"
-  policy = jsonencode({
+  policy      = <<EOF
+  {
     "Version" : "2012-10-17",
     "Statement" : [
       {
@@ -39,7 +42,8 @@ resource "aws_iam_policy" "iam_policy_for_lambda" {
         "Effect" : "Allow"
       }
     ]
-  })
+  }
+  EOF
 }
 
 resource "aws_iam_role_policy_attachment" "attach_iam_policy_to_iam_role" {
